@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="utf-8" />
@@ -76,14 +76,13 @@
   function hideNotice(){$('notice').classList.remove('visible')}
   function label(r){return ['ANTAM','UBS'].includes(r.store_name)?r.store_name:`${r.store_name} ${r.product_name}`.trim()}
   function shape(r){
-    // The current Supabase view exposes store_name_y as store name and
-    // store_name_y_dummy as its display label (for non-ANTAM/UBS brands).
-    // Also tolerate the original view format if it is restored later.
-    const store=String(r.store_name ?? r.store_name_y ?? '').trim();
     const product=String(r.product_name ?? '').trim();
-    const display=String(r.store_name_y_dummy ?? (r.store_name ? (r.store_name_y ?? label({store_name:store,product_name:product})) : label({store_name:store,product_name:product}))).trim();
+    // Gunakan hanya kolom store_name_y untuk label seri.
+    // Fallback ke store_name hanya jika store_name_y tidak tersedia.
+    const storeLabel=String(r.store_name_y ?? r.store_name ?? '').trim();
+    const store=storeLabel;
     return {price_date:String(r.price_date),weight_gram:numeric(r.weight_gram),store_name:store,product_name:product,
-      store_name_y:display,sell_price:numeric(r.sell_price),sell_price_idr:numeric(r.sell_price_idr),
+      store_name_y:storeLabel,sell_price:numeric(r.sell_price),sell_price_idr:numeric(r.sell_price_idr),
       sell_base_price_idr:numeric(r.sell_base_price_idr),sell_price_basis:String(r.sell_price_basis||'per_item'),
       buyback_price_idr:numeric(r.buyback_price_idr),buyback_price_basis:String(r.buyback_price_basis||'per_item')};
   }
@@ -170,7 +169,7 @@
   localStorage.removeItem('emas_monitor_cache_v1');
   state.config=configRead();render();fetchLive();
   if(!state.config){setTimeout(openSettings,350);}
-  if('serviceWorker' in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=2-20261029').catch(()=>{}));
+  if('serviceWorker' in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=3-20261029').catch(()=>{}));
 })();
 </script>
 </body>
