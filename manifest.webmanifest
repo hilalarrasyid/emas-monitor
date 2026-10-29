@@ -1,0 +1,15 @@
+{
+  "id": "/",
+  "name": "Emas Monitor — Analisis Harga Emas",
+  "short_name": "Emas Monitor",
+  "description": "Dashboard harga emas ANTAM, UBS, dan toko emas dalam satu halaman.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f7f9",
+  "theme_color": "#111a25",
+  "icons": [
+    {"src":"./icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"./icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ]
+}
