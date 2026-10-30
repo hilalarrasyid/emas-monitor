@@ -50,14 +50,15 @@
     .spread-current strong{font-size:23px;letter-spacing:-.7px;font-weight:830;font-variant-numeric:tabular-nums}
     .spread-current small{display:block;color:#8290a0;font-size:10px;margin-top:2px}
     .spread-current .base-flag{color:#a46e1f}
-    .spread-mini-plot{height:183px;margin-top:12px;position:relative}
-    .spread-mini-plot svg{width:100%;height:100%;overflow:visible}
+    .spread-mini-plot{height:245px;margin-top:12px;position:relative}
+    .spread-mini-plot svg{display:block;max-width:none;height:100%;overflow:visible}
+    .spread-mini-plot .plot-scroll{width:100%;height:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#cad3db transparent}
     .spread-mini-plot svg text{font-family:inherit}
     .spread-mini-plot .empty{height:100%;display:grid;place-items:center;text-align:center;color:#8792a0;font-size:12px}
     .spread-mini-plot .tip{max-width:255px}
     .spread-mini-footer{font-size:10px;color:#8792a0;border-top:1px solid #f0f2f4;padding-top:10px;display:flex;gap:10px;align-items:start;justify-content:space-between;line-height:1.5;flex-wrap:wrap}
     .spread-footnote{margin:12px 3px 0;color:#8491a2;font-size:11px;line-height:1.55}
-    @media(max-width:650px){.spread-grid{grid-template-columns:1fr}.chart-section .plot{height:290px}.spread-mini-plot{height:175px}.spread-heading{margin-top:20px}.spread-card{padding:17px 15px 14px}}
+    @media(max-width:650px){.spread-grid{grid-template-columns:1fr}.chart-section .plot{height:290px}.spread-mini-plot{height:235px}.spread-heading{margin-top:20px}.spread-card{padding:17px 15px 14px}}
   </style>
 </head>
 <body>
@@ -79,7 +80,7 @@
     <div class="stat-card"><div class="stat-top"><span class="stat-name">Tanggal harga terbaru</span><span class="stat-icon">▦</span></div><div id="statDate" class="stat-value">—</div><div id="subDate" class="stat-sub">Dari data yang tersedia</div></div>
   </section>
   <div class="chart-section">
-    <section class="panel"><div class="panel-top"><div><h2>Harga per Brand</h2><p class="desc">Histori harga jual emas menurut merek. Titik menunjukkan harga yang tercatat; garis putus-putus menghubungkan tanggal tanpa data.</p></div><span id="lineBadge" class="panel-badge">1 gram</span></div><div class="plot" id="linePlot"><div class="tip" id="lineTip" role="tooltip"></div></div><div class="legend" id="lineLegend"></div><div class="panel-foot"><span>Rupiah per keping · † harga dasar sebelum pajak · <span class="brand-note"><i class="dash"></i> tanggal tanpa data</span></span><span id="lineCount">—</span></div></section>
+    <section class="panel"><div class="panel-top"><div><h2>Harga per Brand</h2><p class="desc">Histori harga jual emas menurut merek. Harga langsung dari sell_price. Hover pada grafik untuk membandingkan merek di tanggal yang sama.</p></div><span id="lineBadge" class="panel-badge">1 gram</span></div><div class="plot" id="linePlot"><div class="tip" id="lineTip" role="tooltip"></div></div><div class="legend" id="lineLegend"></div><div class="panel-foot"><span>Rupiah per keping · <span class="brand-note"><i class="dash"></i> tanggal tanpa data</span></span><span id="lineCount">—</span></div></section>
   </div>
   <div class="spread-heading"><div><h2>Spread Harga per Brand</h2><p>Persentase selisih harga jual dan buyback untuk gramase yang dipilih. Tiap brand mempunyai grafiknya sendiri.</p></div><span id="spreadBadge" class="panel-badge">1 gram</span></div>
   <section class="spread-grid" aria-label="Empat grafik spread harga emas per brand">
@@ -90,7 +91,7 @@
         <div class="spread-current"><strong id="spreadValue-ANTAM">—</strong><small id="spreadDate-ANTAM">—</small></div>
       </div>
       <div class="spread-mini-plot" id="spreadPlot-ANTAM"><div class="tip" id="spreadTip-ANTAM" role="tooltip"></div></div>
-      <div class="spread-mini-footer"><span id="spreadDetail-ANTAM">Harga jual − buyback, dalam persen</span><span id="spreadBasis-ANTAM">—</span></div>
+      <div class="spread-mini-footer"><span id="spreadDetail-ANTAM">(Harga jual − buyback) / Harga jual × 100%</span><span id="spreadBasis-ANTAM">—</span></div>
     </article>
     <article class="spread-card" id="spreadCard-UBS">
       <div class="spread-card-top">
@@ -99,7 +100,7 @@
         <div class="spread-current"><strong id="spreadValue-UBS">—</strong><small id="spreadDate-UBS">—</small></div>
       </div>
       <div class="spread-mini-plot" id="spreadPlot-UBS"><div class="tip" id="spreadTip-UBS" role="tooltip"></div></div>
-      <div class="spread-mini-footer"><span id="spreadDetail-UBS">Harga jual − buyback, dalam persen</span><span id="spreadBasis-UBS">—</span></div>
+      <div class="spread-mini-footer"><span id="spreadDetail-UBS">(Harga jual − buyback) / Harga jual × 100%</span><span id="spreadBasis-UBS">—</span></div>
     </article>
     <article class="spread-card" id="spreadCard-HARTADINATA">
       <div class="spread-card-top">
@@ -108,7 +109,7 @@
         <div class="spread-current"><strong id="spreadValue-HARTADINATA">—</strong><small id="spreadDate-HARTADINATA">—</small></div>
       </div>
       <div class="spread-mini-plot" id="spreadPlot-HARTADINATA"><div class="tip" id="spreadTip-HARTADINATA" role="tooltip"></div></div>
-      <div class="spread-mini-footer"><span id="spreadDetail-HARTADINATA">Harga jual − buyback, dalam persen</span><span id="spreadBasis-HARTADINATA">—</span></div>
+      <div class="spread-mini-footer"><span id="spreadDetail-HARTADINATA">(Harga jual − buyback) / Harga jual × 100%</span><span id="spreadBasis-HARTADINATA">—</span></div>
     </article>
     <article class="spread-card" id="spreadCard-GALERI24">
       <div class="spread-card-top">
@@ -117,11 +118,11 @@
         <div class="spread-current"><strong id="spreadValue-GALERI24">—</strong><small id="spreadDate-GALERI24">—</small></div>
       </div>
       <div class="spread-mini-plot" id="spreadPlot-GALERI24"><div class="tip" id="spreadTip-GALERI24" role="tooltip"></div></div>
-      <div class="spread-mini-footer"><span id="spreadDetail-GALERI24">Harga jual − buyback, dalam persen</span><span id="spreadBasis-GALERI24">—</span></div>
+      <div class="spread-mini-footer"><span id="spreadDetail-GALERI24">(Harga jual − buyback) / Harga jual × 100%</span><span id="spreadBasis-GALERI24">—</span></div>
     </article>
   </section>
-  <p class="spread-footnote">● Titik terisi = harga jual akhir · ◯ Titik kosong = hanya harga dasar sebelum pajak (spread indikatif, bukan spread final) · Garis putus-putus = tidak ada data pada tanggal di antaranya. Buyback dinormalisasi ke satu keping emas dengan berat yang dipilih. Skala Y tiap grafik spread menyesuaikan rentang datanya, tidak selalu dimulai dari 0%.</p>
-  <footer class="footer"><span><b>Emas Monitor</b> · PWA v4 · data live Supabase Family · tanpa demo/cache data</span><span>Harga dapat berubah. Pastikan tanggal, sumber, dan pajak sebelum mengambil keputusan.</span></footer>
+  <p class="spread-footnote">● Semua titik memakai simbol terisi. Angka kecil di dekat setiap titik adalah spread (%) dan seluruh histori dapat digeser ke kanan/kiri. Harga jual langsung dari kolom sell_price. Jika buyback tidak tersedia, titik spread tidak dibuat. Khusus buyback yang dinyatakan per gram, nilai disetarakan ke berat keping pilihan. Garis putus-putus menghubungkan tanggal yang tidak memiliki data.</p>
+  <footer class="footer"><span><b>Emas Monitor</b> · PWA v5 · data live Supabase Family · tanpa demo/cache data</span><span>Harga dapat berubah. Pastikan tanggal, sumber, dan pajak sebelum mengambil keputusan.</span></footer>
 </main>
 <div id="settingsOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="modal-top"><h2 id="modalTitle">Koneksi Supabase</h2><button type="button" class="icon-btn" id="closeModal" aria-label="Tutup">✕</button></div><p>Gunakan Project URL dan <b>publishable / anon key</b>. Dashboard hanya membaca view <code>gold_price_dashboard</code>; tidak mengubah data.</p><form id="settingsForm"><div class="field"><label for="urlInput">Project URL</label><input type="url" id="urlInput" placeholder="https://xxxxx.supabase.co" required autocomplete="url" /></div><div class="field"><label for="keyInput">Publishable / anon key</label><input type="password" id="keyInput" placeholder="sb_publishable_... atau eyJ..." required autocomplete="off" /></div><div class="privacy-note">Jangan pernah menggunakan service_role key atau secret key di PWA publik. Publishable key disimpan hanya di browser ini. Pada Incognito, masukkan kembali bila perlu.</div><div class="modal-actions"><button type="button" class="secondary" id="clearBtn">Hapus konfigurasi</button><button type="submit" class="primary">Simpan &amp; hubungkan</button></div></form></div></div>
 <script>
@@ -145,27 +146,22 @@
   function setStatus(mode,label){const el=$('connectionStatus');el.className='status '+mode;setTxt('statusLabel',label)}
   function showNotice(txt){const el=$('notice');el.textContent=txt;el.classList.add('visible')}
   function hideNotice(){$('notice').classList.remove('visible')}
-  function label(r){return ['ANTAM','UBS'].includes(r.store_name)?r.store_name:`${r.store_name} ${r.product_name}`.trim()}
-  function shape(r){
+    function shape(r){
     const product=String(r.product_name ?? '').trim();
     // Gunakan hanya kolom store_name_y untuk label seri.
     // Fallback ke store_name hanya jika store_name_y tidak tersedia.
     const storeLabel=String(r.store_name_y ?? r.store_name ?? '').trim();
     const store=storeLabel;
     return {price_date:String(r.price_date),weight_gram:numeric(r.weight_gram),store_name:store,product_name:product,
-      store_name_y:storeLabel,sell_price:numeric(r.sell_price),sell_price_idr:numeric(r.sell_price_idr),
-      sell_base_price_idr:numeric(r.sell_base_price_idr),sell_price_basis:String(r.sell_price_basis||'per_item'),
-      buyback_price_idr:numeric(r.buyback_price_idr),buyback_price_basis:String(r.buyback_price_basis||'per_item')};
+      store_name_y:storeLabel,sell_price:numeric(r.sell_price),buyback_price_idr:numeric(r.buyback_price_idr),buyback_price_basis:String(r.buyback_price_basis||'per_item')};
   }
-  function pricePerItem(r){if(r.sell_price===null)return null;return r.sell_price_basis==='per_gram'?r.sell_price*r.weight_gram:r.sell_price}
-  function sellFinalPerItem(r){if(r.sell_price_idr===null)return null;return r.sell_price_basis==='per_gram'?r.sell_price_idr*r.weight_gram:r.sell_price_idr}
+  function pricePerItem(r){return r.sell_price;} // Nilai asli kolom sell_price pada view.
   function buybackPerItem(r){if(r.buyback_price_idr===null)return null;return r.buyback_price_basis==='per_gram'?r.buyback_price_idr*r.weight_gram:r.buyback_price_idr}
   function spreadRow(r){
     if(!BRANDS.includes(r.store_name))return null;
-    // Prioritaskan harga akhir. Harga dasar menjadi fallback terlabel jika harga akhir tidak tersedia.
     const sell=pricePerItem(r),buy=buybackPerItem(r);
-    if(sell===null||buy===null||sell<=0)return null;
-    return {...r,sell,buy,spread:sell-buy,pct:(sell-buy)/sell*100,isBase:r.sell_price_idr===null};
+    if(sell===null||buy===null||sell<=0)return null; // Tidak mengarang buyback kosong.
+    return {...r,sell,buy,spread:sell-buy,pct:(sell-buy)/sell*100};
   }
   const millis=s=>Date.parse(s+'T00:00:00Z');
   const gapDays=(a,b)=>Math.round((millis(b)-millis(a))/86400000);
@@ -174,26 +170,26 @@
   function timeline(svg,b){for(let i=0;i<5;i++){const ts=b.t0+(b.t1-b.t0)*i/4;const d=dateStr(new Date(ts));const x=b.left+(b.width-b.left-b.right)*i/4;const label=xsvg('text',{x,y:b.top+b.height+22,'text-anchor':i===0?'start':i===4?'end':'middle','font-size':10,fill:'#8997a6'},svg);label.textContent=shortDay(d)}}
   function renderGramFilters(){const g=$('gramList');g.replaceChildren();grams.filter(v=>state.rows.some(r=>r.weight_gram===v)||(state.rows.length===0&&v===state.gram)).forEach(v=>{const btn=document.createElement('button');btn.type='button';btn.className='chip';btn.textContent=(v===.5?'0.5':v)+'g';btn.setAttribute('aria-pressed',String(state.gram===v));btn.onclick=()=>{state.gram=v;render()};g.append(btn)})}
   function legend(el,entries){el.replaceChildren();for(const {name,color} of entries){const item=document.createElement('span');item.className='legend-entry';const dot=document.createElement('span');dot.className='swatch';dot.style.background=color;const label=document.createElement('span');label.textContent=name;item.append(dot,label);el.append(item)}}
-  function makeSVG(root,w=960,h=300){root.querySelectorAll('svg,.empty').forEach(e=>e.remove());const svg=xsvg('svg',{viewBox:`0 0 ${w} ${h}`,role:'img','aria-label':root.id==='linePlot'?'Grafik garis harga jual per brand':'Grafik garis persentase spread '+root.id.replace('spreadPlot-','')},root);return svg}
-  function noData(root,txt){root.querySelectorAll('svg,.empty').forEach(e=>e.remove());const box=document.createElement('div');box.className='empty';box.textContent=txt;root.append(box)}
+  function makeSVG(root,w=960,h=300){root.querySelectorAll('svg,.empty,.plot-scroll').forEach(e=>e.remove());let target=root;const isSpread=root.id.startsWith('spreadPlot-');if(isSpread){target=document.createElement('div');target.className='plot-scroll';root.append(target)}const svg=xsvg('svg',{viewBox:`0 0 ${w} ${h}`,role:'img','aria-label':root.id==='linePlot'?'Grafik garis harga jual per brand':'Grafik garis persentase spread '+root.id.replace('spreadPlot-','')},target);if(isSpread){svg.style.width=w+'px';svg.style.height=h+'px'}return svg}
+  function noData(root,txt){root.querySelectorAll('svg,.empty,.plot-scroll').forEach(e=>e.remove());const box=document.createElement('div');box.className='empty';box.textContent=txt;root.append(box)}
   function yGrid(svg,values,bounds){const {left,top,height,right,width,min,max}=bounds;for(let i=0;i<5;i++){const val=min+(max-min)*i/4;const y=top+height-height*i/4;xsvg('line',{x1:left,y1:y,x2:width-right,y2:y,stroke:'#edf0f3','stroke-width':1},svg);const t=xsvg('text',{x:left-11,y:y+4,'text-anchor':'end','font-size':11,fill:'#95a0ae'},svg);t.textContent=compact(val).replace(/^Rp/,'')}}
   function addXTicks(svg,dates,bounds){const {left,width,right,top,height}=bounds;const count=Math.min(5,dates.length);let positions=[];for(let i=0;i<count;i++)positions.push(Math.round(i*(dates.length-1)/(Math.max(1,count-1))));const unique=[...new Set(positions)];for(const idx of unique){const x=left+idx/(Math.max(dates.length-1,1))*(width-right-left);const t=xsvg('text',{x,y:top+height+25,'text-anchor':'middle','font-size':11,fill:'#9ba5b1'},svg);t.textContent=shortDay(dates[idx])}}
   function locateTip(root,el,evt,htmlDate,rows){el.replaceChildren();const hdr=document.createElement('div');hdr.className='tt-date';hdr.textContent=htmlDate;el.append(hdr);for(const row of rows){const line=document.createElement('div');line.className='tip-row';const l=document.createElement('span');l.textContent=row[0];const r=document.createElement('b');r.textContent=row[1];line.append(l,r);el.append(line)}const rct=root.getBoundingClientRect();const x=evt.clientX-rct.left,y=evt.clientY-rct.top;el.classList.add('show');const tw=el.offsetWidth,th=el.offsetHeight;el.style.left=Math.min(Math.max(x+12,4),Math.max(4,rct.width-tw-4))+'px';el.style.top=(y-th>10?y-th-9:Math.min(rct.height-th-4,y+15))+'px'}
   function lineChart(rows){
     const root=$('linePlot'),tip=$('lineTip');tip.classList.remove('show');
-    const entries=rows.filter(r=>BRANDS.includes(r.store_name_y)&&r.sell_price!==null&&pricePerItem(r)!==null).sort((a,b)=>a.price_date.localeCompare(b.price_date));
+    const entries=rows.filter(r=>BRANDS.includes(r.store_name_y)&&r.sell_price!==null).sort((a,b)=>a.price_date.localeCompare(b.price_date));
     const labels=BRANDS.filter(name=>entries.some(r=>r.store_name_y===name));
     setTxt('lineCount',labels.length+' brand');setTxt('lineBadge',state.gram+' gram');
     legend($('lineLegend'),labels.map(name=>({name,color:brandColors[name]})));
-    if(!entries.length){noData(root,'Belum ada harga jual untuk gramase dan periode ini.');return}
+    if(!entries.length){noData(root,'Belum ada sell_price untuk gramase dan periode ini.');return}
     const width=Math.max(320,Math.round(root.clientWidth||960)),height=Math.round(root.clientHeight||340);
     const b={left:76,right:18,top:18,height:height-61,width};
-    const values=entries.map(pricePerItem).filter(Number.isFinite),vmin=Math.min(...values),vmax=Math.max(...values);
+    const values=entries.map(r=>r.sell_price).filter(Number.isFinite),vmin=Math.min(...values),vmax=Math.max(...values);
     const pad=Math.max((vmax-vmin)*.16,Math.abs(vmax)*.012,1000);
     b.min=Math.max(0,vmin-pad);b.max=vmax+pad;
     b.t0=millis(dayBefore(state.days-1));b.t1=millis(dayBefore(0));
     const svg=makeSVG(root,width,height);yGrid(svg,values,b);timeline(svg,b);
-    const xy=r=>({x:timeX(r.price_date,b),y:b.top+b.height-(pricePerItem(r)-b.min)/(b.max-b.min)*b.height});
+    const xy=r=>({x:timeX(r.price_date,b),y:b.top+b.height-(r.sell_price-b.min)/(b.max-b.min)*b.height});
     labels.forEach(brand=>{
       const arr=entries.filter(r=>r.store_name_y===brand),color=brandColors[brand];
       for(let i=1;i<arr.length;i++){
@@ -201,41 +197,63 @@
         xsvg('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,stroke:color,'stroke-width':isGap?2:2.8,'stroke-dasharray':isGap?'6 5':'none','stroke-linecap':'round',opacity:isGap?.72:1},svg);
       }
       arr.forEach(r=>{
-        const p=xy(r),isBase=r.sell_price_idr===null;
-        const dot=xsvg('circle',{cx:p.x,cy:p.y,r:4.1,fill:isBase?'#fff':color,stroke:color,'stroke-width':2,style:'cursor:pointer'},svg);
-        const pointTitle=xsvg('title',{},dot);pointTitle.textContent=`${brand} · ${longDay(r.price_date)} · ${money(pricePerItem(r))}${isBase?' (harga dasar sebelum pajak)':''}`;
-        const items=[['Harga jual',money(pricePerItem(r))],['Status',isBase?'Harga dasar sebelum pajak':'Harga jual akhir']];
-        dot.addEventListener('pointerenter',e=>locateTip(root,tip,e,brand+' · '+longDay(r.price_date),items));
-        dot.addEventListener('pointermove',e=>locateTip(root,tip,e,brand+' · '+longDay(r.price_date),items));
-        dot.addEventListener('pointerleave',()=>tip.classList.remove('show'));
+        const p=xy(r);
+        const dot=xsvg('circle',{cx:p.x,cy:p.y,r:4.1,fill:color,stroke:'#fff','stroke-width':1.4,'pointer-events':'none'},svg);
+        const title=xsvg('title',{},dot);title.textContent=`${brand} · ${longDay(r.price_date)} · ${money(r.sell_price)}`;
       });
     });
+    // Pemandu vertikal aktif saat pointer ada di plot, bukan hanya tepat pada titik kecil.
+    const guide=xsvg('line',{x1:b.left,y1:b.top,x2:b.left,y2:b.top+b.height,stroke:'#79899c','stroke-width':1.4,'stroke-dasharray':'4 5',visibility:'hidden','pointer-events':'none'},svg);
+    const highlights=xsvg('g',{'pointer-events':'none'},svg);
+    const dates=[...new Set(entries.map(r=>r.price_date))].sort();
+    const overlay=xsvg('rect',{x:b.left,y:b.top,width:width-b.left-b.right,height:b.height,fill:'transparent',style:'cursor:crosshair'},svg);
+    const hover=e=>{
+      const rct=svg.getBoundingClientRect();
+      const pointerX=(e.clientX-rct.left)/rct.width*width;
+      const date=dates.reduce((best,d)=>Math.abs(timeX(d,b)-pointerX)<Math.abs(timeX(best,b)-pointerX)?d:best,dates[0]);
+      const x=timeX(date,b);
+      guide.setAttribute('x1',x);guide.setAttribute('x2',x);guide.setAttribute('visibility','visible');
+      highlights.replaceChildren();
+      const current=entries.filter(r=>r.price_date===date);
+      current.forEach(r=>{
+        const p=xy(r);xsvg('circle',{cx:p.x,cy:p.y,r:6.2,fill:'#fff',stroke:brandColors[r.store_name_y],'stroke-width':2.5},highlights);
+      });
+      const info=labels.map(brand=>{
+        const record=current.find(r=>r.store_name_y===brand);
+        return [brand,record?money(record.sell_price):'—'];
+      });
+      locateTip(root,tip,e,longDay(date),info);
+    };
+    overlay.addEventListener('pointermove',hover);overlay.addEventListener('pointerdown',hover);
+    overlay.addEventListener('pointerleave',()=>{guide.setAttribute('visibility','hidden');highlights.replaceChildren();tip.classList.remove('show')});
   }
   function spreadBrandChart(brand,rows){
     const root=$('spreadPlot-'+brand),tip=$('spreadTip-'+brand);
     tip.classList.remove('show');
-    const all=rows.filter(r=>r.store_name===brand),arr=all.map(spreadRow).filter(Boolean).sort((a,b)=>a.price_date.localeCompare(b.price_date));
-    const latest=arr.at(-1),baseCount=arr.filter(r=>r.isBase).length;
-    setTxt('spreadCount-'+brand,`${arr.length} titik · ${baseCount} harga dasar`);
+    const arr=rows.filter(r=>r.store_name===brand).map(spreadRow).filter(Boolean).sort((a,b)=>a.price_date.localeCompare(b.price_date));
+    const latest=arr.at(-1);
+    setTxt('spreadCount-'+brand,`${arr.length} titik · geser grafik ↔`);
     setTxt('spreadValue-'+brand,latest?pctFormat(latest.pct):'—');
     setTxt('spreadDate-'+brand,latest?longDay(latest.price_date):'Belum ada data');
-    setTxt('spreadDetail-'+brand,latest?`Jual ${compact(latest.sell)} · Buyback ${compact(latest.buy)}`:'Belum tersedia harga jual dan buyback');
-    const basis=$('spreadBasis-'+brand);
-    basis.textContent=latest?(latest.isBase?'† Harga dasar':'Harga jual akhir'):'—';
-    basis.classList.toggle('base-flag',Boolean(latest?.isBase));
-    if(!arr.length){noData(root,'Belum ada pasangan harga jual dan buyback untuk gramase ini.');return}
-    const width=Math.max(320,Math.round(root.clientWidth||500)),height=Math.round(root.clientHeight||183);
-    const b={left:49,right:12,top:10,height:height-46,width};
+    setTxt('spreadDetail-'+brand,latest?`Jual ${compact(latest.sell)} · Buyback ${compact(latest.buy)}`:'Buyback atau harga jual belum tersedia');
+    const basis=$('spreadBasis-'+brand);basis.textContent=latest?'Sesuai sell_price':'—';basis.classList.remove('base-flag');
+    if(!arr.length){noData(root,'Belum tersedia pasangan sell_price dan buyback untuk gramase ini.');return}
+    // Lebarkan bidang grafik secara horizontal bila banyak titik sehingga semua label % terbaca.
+    const frameWidth=Math.max(280,Math.round(root.clientWidth||500)),height=Math.round(root.clientHeight||245);
+    const dateSpan=Math.max(1,gapDays(arr[0].price_date,arr.at(-1).price_date));
+    const width=Math.max(frameWidth,dateSpan*33+112);
+    const b={left:52,right:48,top:40,height:height-85,width};
     const points=arr.map(r=>r.pct),pmin=Math.min(...points),pmax=Math.max(...points);
     const pad=Math.max((pmax-pmin)*.25,0.45);
     b.min=pmin>0?Math.max(0,pmin-pad):pmin-pad;b.max=pmax+pad;
-    if(b.max-b.min<1){b.max=b.min+1}
-    b.t0=millis(dayBefore(state.days-1));b.t1=millis(dayBefore(0));
+    if(b.max-b.min<1)b.max=b.min+1;
+    b.t0=millis(arr[0].price_date);b.t1=millis(arr.at(-1).price_date);
     const svg=makeSVG(root,width,height),color=brandColors[brand];
     for(let i=0;i<4;i++){
       const value=b.min+(b.max-b.min)*i/3,y=b.top+b.height-b.height*i/3;
       xsvg('line',{x1:b.left,y1:y,x2:width-b.right,y2:y,stroke:'#eef1f3'},svg);
-      const t=xsvg('text',{x:b.left-8,y:y+4,'text-anchor':'end','font-size':10,fill:'#98a4b0'},svg);t.textContent=value.toLocaleString('id-ID',{maximumFractionDigits:1})+'%';
+      const t=xsvg('text',{x:b.left-8,y:y+4,'text-anchor':'end','font-size':10,fill:'#98a4b0'},svg);
+      t.textContent=value.toLocaleString('id-ID',{maximumFractionDigits:1})+'%';
     }
     timeline(svg,b);
     const xy=r=>({x:timeX(r.price_date,b),y:b.top+b.height-(r.pct-b.min)/(b.max-b.min)*b.height});
@@ -243,17 +261,48 @@
       const prev=arr[i-1],cur=arr[i],p=xy(prev),q=xy(cur),missing=gapDays(prev.price_date,cur.price_date)>1;
       xsvg('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,stroke:color,'stroke-width':missing?1.8:2.2,'stroke-dasharray':missing?'5 4':'none',opacity:missing?.65:1,'stroke-linecap':'round'},svg);
     }
-    arr.forEach(r=>{
-      const p=xy(r),dot=xsvg('circle',{cx:p.x,cy:p.y,r:3.6,fill:r.isBase?'#fff':color,stroke:color,'stroke-width':1.7,style:'cursor:pointer'},svg);
-      const title=xsvg('title',{},dot);title.textContent=`${brand} · ${longDay(r.price_date)} · Spread ${pctFormat(r.pct)}${r.isBase?' · harga dasar sebelum pajak':''}`;
-      const info=[['Spread',pctFormat(r.pct)],['Jual',money(r.sell)],['Buyback',money(r.buy)],['Selisih',money(r.spread)],['Basis jual',r.isBase?'Dasar sebelum pajak':'Harga akhir']];
-      dot.addEventListener('pointermove',e=>locateTip(root,tip,e,brand+' · '+longDay(r.price_date),info));
-      dot.addEventListener('pointerenter',e=>locateTip(root,tip,e,brand+' · '+longDay(r.price_date),info));
-      dot.addEventListener('pointerleave',()=>tip.classList.remove('show'));
+    arr.forEach((r,i)=>{
+      const p=xy(r);
+      xsvg('circle',{cx:p.x,cy:p.y,r:3.9,fill:color,stroke:'#fff','stroke-width':1.1,'pointer-events':'none'},svg);
+      // Semua angka dapat dibaca utuh, bukan bertumpuk: chart lebar dan bisa digeser.
+      const isLower=i%2===1;
+      const ty=Math.max(18,Math.min(height-32,p.y+(isLower?17:-11)));
+      const t=xsvg('text',{x:p.x,y:ty,'text-anchor':'middle','font-size':10.2,'font-weight':750,
+        fill:color,stroke:'#fff','stroke-width':3.2,'stroke-linejoin':'round',
+        'paint-order':'stroke','pointer-events':'none'},svg);
+      t.textContent=pctFormat(r.pct);
     });
+    const guide=xsvg('line',{x1:b.left,y1:b.top,x2:b.left,y2:b.top+b.height,stroke:'#7f8996','stroke-dasharray':'4 4','stroke-width':1.2,visibility:'hidden','pointer-events':'none'},svg);
+    const halo=xsvg('g',{'pointer-events':'none'},svg);
+    const overlay=xsvg('rect',{x:b.left,y:b.top,width:width-b.left-b.right,height:b.height,fill:'transparent',style:'cursor:crosshair'},svg);
+    const hover=e=>{
+      const rect=svg.getBoundingClientRect(),mouseX=(e.clientX-rect.left)/rect.width*width;
+      const rec=arr.reduce((best,r)=>Math.abs(timeX(r.price_date,b)-mouseX)<Math.abs(timeX(best.price_date,b)-mouseX)?r:best,arr[0]);
+      const p=xy(rec);guide.setAttribute('x1',p.x);guide.setAttribute('x2',p.x);guide.setAttribute('visibility','visible');
+      halo.replaceChildren();xsvg('circle',{cx:p.x,cy:p.y,r:6.2,fill:'#fff',stroke:color,'stroke-width':2.5},halo);
+      locateTip(root,tip,e,brand+' · '+longDay(rec.price_date),[['Spread',pctFormat(rec.pct)],['Jual',money(rec.sell)],['Buyback',money(rec.buy)],['Selisih',money(rec.spread)]]);
+    };
+    overlay.addEventListener('pointermove',hover);overlay.addEventListener('pointerdown',hover);
+    overlay.addEventListener('pointerleave',()=>{guide.setAttribute('visibility','hidden');halo.replaceChildren();tip.classList.remove('show')});
+    const scroller=root.querySelector('.plot-scroll');if(scroller)scroller.scrollLeft=scroller.scrollWidth-scroller.clientWidth;
   }
   function spreadCharts(rows){setTxt('spreadBadge',state.gram+' gram');BRANDS.forEach(brand=>spreadBrandChart(brand,rows))}
-  function renderStats(rows){const latest=s=>rows.filter(r=>r.store_name===s&&r.sell_price!==null).sort((a,b)=>b.price_date.localeCompare(a.price_date))[0];const a=latest('ANTAM'),u=latest('UBS');setTxt('statAntam',a?compact(pricePerItem(a)):'—');setTxt('subAntam',a?longDay(a.price_date)+(a.sell_price_idr===null?' · harga dasar':' · harga akhir'):'Tidak tersedia');setTxt('statUbs',u?compact(pricePerItem(u)):'—');setTxt('subUbs',u?longDay(u.price_date)+(u.sell_price_idr===null?' · harga dasar':' · harga akhir'):'Tidak tersedia');const good=rows.map(spreadRow).filter(Boolean);const latestByBrand=BRANDS.map(s=>good.filter(r=>r.store_name===s).sort((a,b)=>b.price_date.localeCompare(a.price_date))[0]).filter(Boolean);const low=latestByBrand.sort((a,b)=>a.pct-b.pct)[0];setTxt('statSpread',low?low.pct.toLocaleString('id-ID',{maximumFractionDigits:2})+'%':'—');setTxt('subSpread',low?`${low.store_name} · ${longDay(low.price_date)}`:'Perlu harga jual akhir & buyback');let date=rows.map(r=>r.price_date).sort().at(-1);setTxt('statDate',date?shortDay(date):'—');setTxt('subDate',date?'Data masuk pada '+longDay(date):'Belum ada harga')}
+  function renderStats(rows){
+    const latest=s=>rows.filter(r=>r.store_name===s&&r.sell_price!==null).sort((a,b)=>b.price_date.localeCompare(a.price_date))[0];
+    const a=latest('ANTAM'),u=latest('UBS');
+    setTxt('statAntam',a?compact(a.sell_price):'—');
+    setTxt('subAntam',a?longDay(a.price_date)+' · sell_price':'Tidak tersedia');
+    setTxt('statUbs',u?compact(u.sell_price):'—');
+    setTxt('subUbs',u?longDay(u.price_date)+' · sell_price':'Tidak tersedia');
+    const good=rows.map(spreadRow).filter(Boolean);
+    const byBrand=BRANDS.map(name=>good.filter(r=>r.store_name===name).sort((a,b)=>b.price_date.localeCompare(a.price_date))[0]).filter(Boolean);
+    const low=byBrand.sort((a,b)=>a.pct-b.pct)[0];
+    setTxt('statSpread',low?pctFormat(low.pct):'—');
+    setTxt('subSpread',low?`${low.store_name} · ${longDay(low.price_date)}`:'Butuh harga jual dan buyback');
+    const date=rows.map(r=>r.price_date).sort().at(-1);
+    setTxt('statDate',date?shortDay(date):'—');
+    setTxt('subDate',date?'Data masuk pada '+longDay(date):'Belum ada harga');
+  }
   function render(){renderGramFilters();document.querySelectorAll('#rangeList button').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.days)===state.days)));const rows=state.rows.filter(r=>Math.abs(r.weight_gram-state.gram)<.0001 && r.price_date>=dayBefore(state.days-1));renderStats(rows);lineChart(rows);spreadCharts(rows)}
   function configRead(){try{return JSON.parse(localStorage.getItem('emas_monitor_config_v1')||'null')}catch{return null}}
   function openSettings(){const c=state.config||configRead()||{};$('urlInput').value=c.url||'https://isoazrlrvegmofscpiwk.supabase.co';$('keyInput').value=c.key||'';$('settingsOverlay').classList.add('open');$('keyInput').focus()}
@@ -318,7 +367,7 @@
   localStorage.removeItem('emas_monitor_cache_v1');
   state.config=configRead();render();fetchLive();
   if(!state.config){setTimeout(openSettings,350);}
-  if('serviceWorker' in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=4-20261030').catch(()=>{}));
+  if('serviceWorker' in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=5-20261030').catch(()=>{}));
 })();
 </script>
 </body>
