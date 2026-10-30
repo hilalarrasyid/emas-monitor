@@ -323,3 +323,88 @@
       const candidates=state.rows.filter(r=>
         r.store_name_y===brand &&
         Math.abs(r.weight_gram-state.gram)<0.0001 &&
+        r.sell_price!==null && Number.isFinite(r.sell_price)
+      );
+      candidates.sort((a,b)=>b.price_date.localeCompare(a.price_date));
+      const latest=candidates[0];
+      const priceEl=$('stat-'+brand);
+      if(latest){
+        setTxt('stat-'+brand,money(latest.sell_price));
+        priceEl.title=money(latest.sell_price);
+        setTxt('stat-date-'+brand,longDay(latest.price_date));
+      }else{
+        setTxt('stat-'+brand,'—');
+        priceEl.title='Harga jual tidak tersedia';
+        setTxt('stat-date-'+brand,'Belum ada harga');
+      }
+    });
+  }
+  function render(){renderGramFilters();document.querySelectorAll('#rangeList button').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.days)===state.days)));const rows=state.rows.filter(r=>Math.abs(r.weight_gram-state.gram)<.0001 && r.price_date>=dayBefore(state.days-1));renderStats();lineChart(rows);spreadCharts(rows)}
+  function configRead(){try{return JSON.parse(localStorage.getItem('emas_monitor_config_v1')||'null')}catch{return null}}
+  function openSettings(){const c=state.config||configRead()||{};$('urlInput').value=c.url||'https://isoazrlrvegmofscpiwk.supabase.co';$('keyInput').value=c.key||'';$('settingsOverlay').classList.add('open');$('keyInput').focus()}
+  function closeSettings(){$('settingsOverlay').classList.remove('open')}
+  async function fetchLive(){
+    const c=state.config||configRead();
+    state.rows=[]; // Never display removed records from stale cache or demo.
+    state.connected=false;
+    if(!c?.key||!c.url){
+      setStatus('wait','Perlu koneksi');
+      showNotice('Belum terhubung ke Supabase. Buka Pengaturan dan isi publishable key. Tidak ada data simulasi. Jika Anda memakai Incognito, pengaturan browser biasa tidak ikut terbawa.');
+      render();return;
+    }
+    setStatus('wait','Memuat Supabase…');
+    $('refreshBtn').disabled=true;render();
+    const pageSize=1000,maxPages=25;
+    const base=c.url.replace(/\/$/,'');
+    const since=dayBefore(Math.max(state.days,90)-1); // Agar kartu tetap menampilkan harga terbaru meski grafik 7H/30H.
+    try{
+      const results=[];
+      for(let page=0;page<maxPages;page++){
+        // Use select=* because store_name is no longer in the current view;
+        // this selects ONLY the intentionally public view columns.
+        const search=new URLSearchParams({select:'*',price_date:`gte.${since}`,order:'price_date.asc',limit:String(pageSize),offset:String(page*pageSize)});
+        const response=await fetch(`${base}/rest/v1/gold_price_dashboard?${search.toString()}`,{
+          headers:{apikey:c.key,Accept:'application/json'},cache:'no-store'
+        });
+        if(!response.ok){
+          let message=`HTTP ${response.status}`;
+          try{const err=await response.json();message+=' · '+(err.message||err.hint||err.code||'')}catch{}
+          throw new Error(message);
+        }
+        const pageData=await response.json();
+        if(!Array.isArray(pageData))throw new Error('Format respons API tidak sesuai (bukan array)');
+        results.push(...pageData);
+        if(pageData.length<pageSize)break;
+        if(page===maxPages-1)throw new Error('Lebih dari 25.000 record; gunakan periode lebih pendek');
+      }
+      state.rows=results.map(shape).filter(r=>r.price_date && Number.isFinite(r.weight_gram) && !!r.store_name);
+      state.connected=true;
+      state.lastFetch=new Date();
+      setStatus('live','Supabase Live');
+      setTxt('lastSync','Sinkron '+state.lastFetch.toLocaleString('id-ID',{dateStyle:'medium',timeStyle:'short'}));
+      hideNotice();
+      if(!state.rows.length)showNotice('Koneksi sukses, tetapi tidak ada data pada periode ini. Tidak menampilkan demo ataupun cache lama.');
+      render();
+    }catch(e){
+      state.rows=[];
+      state.connected=false;
+      setStatus('error','Koneksi gagal');
+      setTxt('lastSync','Sinkronisasi gagal');
+      showNotice('Tidak dapat membaca view gold_price_dashboard: '+e.message+'. Tidak menampilkan data palsu atau cache lama. Periksa pengaturan dan izin view di Supabase.');
+      render();
+    }finally{$('refreshBtn').disabled=false}
+  }
+  $('settingsBtn').onclick=openSettings;$('closeModal').onclick=closeSettings;$('settingsOverlay').addEventListener('click',e=>{if(e.target===$('settingsOverlay'))closeSettings()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSettings()});
+  $('settingsForm').onsubmit=e=>{e.preventDefault();const url=$('urlInput').value.trim(),key=$('keyInput').value.trim();if(!/^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(url)){alert('Gunakan Project URL Supabase dalam format https://xxxxx.supabase.co');return}if(!key){alert('Isi publishable/anon key');return}if(key.startsWith('sb_secret_') || /service_role/i.test(key)){alert('Jangan gunakan secret key pada aplikasi frontend!');return}state.config={url:url.replace(/\/$/,''),key};localStorage.setItem('emas_monitor_config_v1',JSON.stringify(state.config));closeSettings();fetchLive()};
+  $('clearBtn').onclick=()=>{state.config=null;localStorage.removeItem('emas_monitor_config_v1');localStorage.removeItem('emas_monitor_cache_v1');closeSettings();fetchLive();};
+  $('refreshBtn').onclick=()=>fetchLive();
+  document.querySelectorAll('#rangeList button').forEach(btn=>btn.onclick=()=>{state.days=Number(btn.dataset.days);fetchLive()});
+  // Old offline cache may contain deleted stores. Never load it.
+  localStorage.removeItem('emas_monitor_cache_v1');
+  state.config=configRead();render();fetchLive();
+  if(!state.config){setTimeout(openSettings,350);}
+  if('serviceWorker' in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=6-20261030').catch(()=>{}));
+})();
+</script>
+</body>
+</html>
