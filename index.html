@@ -27,6 +27,37 @@
     @media(min-width:1100px){.chart-section{grid-template-columns:1fr 1fr}.plot{height:300px}.panel{padding:22px 21px 19px}}
     @media(max-width:800px){.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.title-row{align-items:start}.lastsync{display:none}.page{padding:22px 18px 50px}.top-inner{padding:16px 18px}.filter-card{padding:16px}}
     @media(max-width:480px){.title-row h1{font-size:27px}.brand-sub{display:none}.stat-card{padding:15px}.stat-value{font-size:19px}.filter-wrap{gap:9px}.filter-card{margin-top:19px}.filter-label{width:100%}.gram-list{gap:5px}.chip{padding:8px 10px}.panel{padding:18px 14px}.plot{height:275px}.page{padding:21px 12px 50px}.panel .desc{font-size:11px}.status{padding:8px;font-size:10px}.status span:last-child{max-width:80px;text-overflow:ellipsis;overflow:hidden}.footer{flex-direction:column}}
+
+    /* v4 · four-brand visual identity and four individual spread panels */
+    .chart-section{display:block;margin-top:19px}
+    .chart-section .plot{height:345px}
+    .brand-note{display:inline-flex;gap:7px;align-items:center;font-size:11px;color:#718093}
+    .brand-note .dash{display:inline-block;width:22px;border-top:2px dashed #778498}
+    .brand-note .dot-sym{width:9px;height:9px;display:inline-block;border:2px solid #778498;border-radius:50%}
+    .spread-heading{margin:23px 2px 12px;display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .spread-heading h2{font-size:19px;letter-spacing:-.5px;margin:0}
+    .spread-heading p{font-size:12px;line-height:1.6;color:var(--muted);margin:5px 0 0}
+    .spread-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .spread-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:19px 19px 15px;min-width:0;overflow:hidden}
+    .spread-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px}
+    .spread-brand{display:flex;gap:10px;align-items:center;min-width:0}
+    .brand-logo{width:47px;height:43px;border:1px solid #e4e9ee;border-radius:12px;background:#fff;position:relative;display:grid;place-items:center;overflow:hidden;flex-shrink:0}
+    .brand-logo .brand-fallback{position:absolute;inset:0;display:grid;place-items:center;background:var(--logo-bg,#f4f6f7);color:var(--logo-fg,#24364b);font-size:12px;font-weight:900;letter-spacing:-.45px}
+    .brand-logo img{position:absolute;inset:4px;width:calc(100% - 8px);height:calc(100% - 8px);object-fit:contain;mix-blend-mode:multiply;background:#fff}
+    .brand-name{font-size:13px;font-weight:800;letter-spacing:-.35px;color:var(--ink)}
+    .brand-count{font-size:10px;color:#8a96a4;margin-top:3px}
+    .spread-current{text-align:right;white-space:nowrap}
+    .spread-current strong{font-size:23px;letter-spacing:-.7px;font-weight:830;font-variant-numeric:tabular-nums}
+    .spread-current small{display:block;color:#8290a0;font-size:10px;margin-top:2px}
+    .spread-current .base-flag{color:#a46e1f}
+    .spread-mini-plot{height:183px;margin-top:12px;position:relative}
+    .spread-mini-plot svg{width:100%;height:100%;overflow:visible}
+    .spread-mini-plot svg text{font-family:inherit}
+    .spread-mini-plot .empty{height:100%;display:grid;place-items:center;text-align:center;color:#8792a0;font-size:12px}
+    .spread-mini-plot .tip{max-width:255px}
+    .spread-mini-footer{font-size:10px;color:#8792a0;border-top:1px solid #f0f2f4;padding-top:10px;display:flex;gap:10px;align-items:start;justify-content:space-between;line-height:1.5;flex-wrap:wrap}
+    .spread-footnote{margin:12px 3px 0;color:#8491a2;font-size:11px;line-height:1.55}
+    @media(max-width:650px){.spread-grid{grid-template-columns:1fr}.chart-section .plot{height:290px}.spread-mini-plot{height:175px}.spread-heading{margin-top:20px}.spread-card{padding:17px 15px 14px}}
   </style>
 </head>
 <body>
@@ -35,7 +66,7 @@
   <div class="top-actions"><span id="connectionStatus" class="status demo"><span class="dot"></span><span id="statusLabel">Belum terhubung</span></span><button id="refreshBtn" class="icon-btn" type="button" title="Refresh data" aria-label="Refresh data"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.5 6"/><path d="m20 4 0 7-7 0"/></svg></button><button id="settingsBtn" class="icon-btn" type="button" title="Konfigurasi Supabase" aria-label="Konfigurasi Supabase"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button></div>
 </div></header>
 <main class="page">
-  <div class="title-row"><div><p class="eyebrow">Market overview / IDR</p><h1>Analisis Harga Emas</h1><p class="lead">Pantau harga jual tiap toko dan spread ANTAM vs UBS dalam satu halaman.</p></div><p id="lastSync" class="lastsync">Belum terhubung</p></div>
+  <div class="title-row"><div><p class="eyebrow">Market overview / IDR</p><h1>Analisis Harga Emas</h1><p class="lead">Pantau harga jual dan persentase spread ANTAM, UBS, HARTADINATA, serta GALERI24 dalam satu halaman.</p></div><p id="lastSync" class="lastsync">Belum terhubung</p></div>
   <section class="filter-card" aria-label="Filter dashboard">
     <div class="filter-wrap"><span class="filter-label">Gramase</span><div id="gramList" class="gram-list" role="group" aria-label="Pilih berat emas"></div></div>
     <div class="filter-wrap"><span class="filter-label">Periode</span><div class="range-list" id="rangeList" role="group" aria-label="Periode histori"><button data-days="7" aria-pressed="false">7H</button><button data-days="30" aria-pressed="true">30H</button><button data-days="90" aria-pressed="false">90H</button></div></div>
@@ -44,14 +75,53 @@
   <section class="stat-grid" aria-label="Ringkasan harga">
     <div class="stat-card"><div class="stat-top"><span class="stat-name">ANTAM · Harga jual</span><span class="stat-icon">◈</span></div><div id="statAntam" class="stat-value">—</div><div id="subAntam" class="stat-sub">Data terbaru</div></div>
     <div class="stat-card"><div class="stat-top"><span class="stat-name">UBS · Harga jual</span><span class="stat-icon">◈</span></div><div id="statUbs" class="stat-value">—</div><div id="subUbs" class="stat-sub">Data terbaru</div></div>
-    <div class="stat-card"><div class="stat-top"><span class="stat-name">Spread terendah</span><span class="stat-icon">↘</span></div><div id="statSpread" class="stat-value">—</div><div id="subSpread" class="stat-sub">ANTAM vs UBS</div></div>
+    <div class="stat-card"><div class="stat-top"><span class="stat-name">Spread terendah</span><span class="stat-icon">↘</span></div><div id="statSpread" class="stat-value">—</div><div id="subSpread" class="stat-sub">Semua brand</div></div>
     <div class="stat-card"><div class="stat-top"><span class="stat-name">Tanggal harga terbaru</span><span class="stat-icon">▦</span></div><div id="statDate" class="stat-value">—</div><div id="subDate" class="stat-sub">Dari data yang tersedia</div></div>
   </section>
   <div class="chart-section">
-    <section class="panel"><div class="panel-top"><div><h2>Harga per Store</h2><p class="desc">Histori dari Supabase · garis hanya untuk toko yang tersedia.</p></div><span id="lineBadge" class="panel-badge">1 gram</span></div><div class="plot" id="linePlot"><div class="tip" id="lineTip" role="tooltip"></div></div><div class="legend" id="lineLegend"></div><div class="panel-foot"><span>Nilai dalam Rupiah per keping · † harga dasar sebelum pajak</span><span id="lineCount">—</span></div></section>
-    <section class="panel"><div class="panel-top"><div><h2>Spread Harga</h2><p class="desc">Harga jual akhir dikurangi nilai buyback per keping · ANTAM &amp; UBS.</p></div><span id="spreadBadge" class="panel-badge">1 gram</span></div><div class="plot" id="spreadPlot"><div class="tip" id="spreadTip" role="tooltip"></div></div><div class="legend" id="spreadLegend"></div><div class="panel-foot"><span>Buyback Antam per gram dikonversi menjadi per keping · tanpa harga dasar fallback</span><span id="spreadCount">—</span></div></section>
+    <section class="panel"><div class="panel-top"><div><h2>Harga per Brand</h2><p class="desc">Histori harga jual emas menurut merek. Titik menunjukkan harga yang tercatat; garis putus-putus menghubungkan tanggal tanpa data.</p></div><span id="lineBadge" class="panel-badge">1 gram</span></div><div class="plot" id="linePlot"><div class="tip" id="lineTip" role="tooltip"></div></div><div class="legend" id="lineLegend"></div><div class="panel-foot"><span>Rupiah per keping · † harga dasar sebelum pajak · <span class="brand-note"><i class="dash"></i> tanggal tanpa data</span></span><span id="lineCount">—</span></div></section>
   </div>
-  <footer class="footer"><span><b>Emas Monitor</b> · PWA v2 · hanya data live Supabase Family · tanpa demo/cache data</span><span>Harga dapat berubah. Pastikan tanggal, sumber, dan pajak sebelum mengambil keputusan.</span></footer>
+  <div class="spread-heading"><div><h2>Spread Harga per Brand</h2><p>Persentase selisih harga jual dan buyback untuk gramase yang dipilih. Tiap brand mempunyai grafiknya sendiri.</p></div><span id="spreadBadge" class="panel-badge">1 gram</span></div>
+  <section class="spread-grid" aria-label="Empat grafik spread harga emas per brand">
+    <article class="spread-card" id="spreadCard-ANTAM">
+      <div class="spread-card-top">
+        <div class="spread-brand"><span class="brand-logo" style="--logo-bg:#f6f7f8"><span class="brand-fallback">ANT</span><img src="https://cdn.kibrispdr.org/data/6/antam-logo-png-9.png" alt="Logo ANTAM" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></span>
+          <div><div class="brand-name">ANTAM</div><div class="brand-count" id="spreadCount-ANTAM">—</div></div></div>
+        <div class="spread-current"><strong id="spreadValue-ANTAM">—</strong><small id="spreadDate-ANTAM">—</small></div>
+      </div>
+      <div class="spread-mini-plot" id="spreadPlot-ANTAM"><div class="tip" id="spreadTip-ANTAM" role="tooltip"></div></div>
+      <div class="spread-mini-footer"><span id="spreadDetail-ANTAM">Harga jual − buyback, dalam persen</span><span id="spreadBasis-ANTAM">—</span></div>
+    </article>
+    <article class="spread-card" id="spreadCard-UBS">
+      <div class="spread-card-top">
+        <div class="spread-brand"><span class="brand-logo" style="--logo-bg:#f6f7f8"><span class="brand-fallback">UBS</span><img src="https://images.glints.com/unsafe/1200x0/glints-dashboard.oss-ap-southeast-1-internal.aliyuncs.com/company-logo/b3fda716c697e23df95296a71f6eca81.png" alt="Logo UBS" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></span>
+          <div><div class="brand-name">UBS</div><div class="brand-count" id="spreadCount-UBS">—</div></div></div>
+        <div class="spread-current"><strong id="spreadValue-UBS">—</strong><small id="spreadDate-UBS">—</small></div>
+      </div>
+      <div class="spread-mini-plot" id="spreadPlot-UBS"><div class="tip" id="spreadTip-UBS" role="tooltip"></div></div>
+      <div class="spread-mini-footer"><span id="spreadDetail-UBS">Harga jual − buyback, dalam persen</span><span id="spreadBasis-UBS">—</span></div>
+    </article>
+    <article class="spread-card" id="spreadCard-HARTADINATA">
+      <div class="spread-card-top">
+        <div class="spread-brand"><span class="brand-logo" style="--logo-bg:#f6f7f8"><span class="brand-fallback">HRTA</span><img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/98/MTA-184655023/brd-131614_full04-7127aaa1.webp" alt="Logo HARTADINATA" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></span>
+          <div><div class="brand-name">HARTADINATA</div><div class="brand-count" id="spreadCount-HARTADINATA">—</div></div></div>
+        <div class="spread-current"><strong id="spreadValue-HARTADINATA">—</strong><small id="spreadDate-HARTADINATA">—</small></div>
+      </div>
+      <div class="spread-mini-plot" id="spreadPlot-HARTADINATA"><div class="tip" id="spreadTip-HARTADINATA" role="tooltip"></div></div>
+      <div class="spread-mini-footer"><span id="spreadDetail-HARTADINATA">Harga jual − buyback, dalam persen</span><span id="spreadBasis-HARTADINATA">—</span></div>
+    </article>
+    <article class="spread-card" id="spreadCard-GALERI24">
+      <div class="spread-card-top">
+        <div class="spread-brand"><span class="brand-logo" style="--logo-bg:#f6f7f8"><span class="brand-fallback">G24</span><img src="https://www.static-src.com/wcsstore/Indraprastha/images/brandlogo/BRD-74890/galeri24-pegadaian-2dd87bc3-bc23-41dc-9832-9b40935830ef.png" alt="Logo GALERI24" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></span>
+          <div><div class="brand-name">GALERI24</div><div class="brand-count" id="spreadCount-GALERI24">—</div></div></div>
+        <div class="spread-current"><strong id="spreadValue-GALERI24">—</strong><small id="spreadDate-GALERI24">—</small></div>
+      </div>
+      <div class="spread-mini-plot" id="spreadPlot-GALERI24"><div class="tip" id="spreadTip-GALERI24" role="tooltip"></div></div>
+      <div class="spread-mini-footer"><span id="spreadDetail-GALERI24">Harga jual − buyback, dalam persen</span><span id="spreadBasis-GALERI24">—</span></div>
+    </article>
+  </section>
+  <p class="spread-footnote">● Titik terisi = harga jual akhir · ◯ Titik kosong = hanya harga dasar sebelum pajak (spread indikatif, bukan spread final) · Garis putus-putus = tidak ada data pada tanggal di antaranya. Buyback dinormalisasi ke satu keping emas dengan berat yang dipilih. Skala Y tiap grafik spread menyesuaikan rentang datanya, tidak selalu dimulai dari 0%.</p>
+  <footer class="footer"><span><b>Emas Monitor</b> · PWA v4 · data live Supabase Family · tanpa demo/cache data</span><span>Harga dapat berubah. Pastikan tanggal, sumber, dan pajak sebelum mengambil keputusan.</span></footer>
 </main>
 <div id="settingsOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="modal-top"><h2 id="modalTitle">Koneksi Supabase</h2><button type="button" class="icon-btn" id="closeModal" aria-label="Tutup">✕</button></div><p>Gunakan Project URL dan <b>publishable / anon key</b>. Dashboard hanya membaca view <code>gold_price_dashboard</code>; tidak mengubah data.</p><form id="settingsForm"><div class="field"><label for="urlInput">Project URL</label><input type="url" id="urlInput" placeholder="https://xxxxx.supabase.co" required autocomplete="url" /></div><div class="field"><label for="keyInput">Publishable / anon key</label><input type="password" id="keyInput" placeholder="sb_publishable_... atau eyJ..." required autocomplete="off" /></div><div class="privacy-note">Jangan pernah menggunakan service_role key atau secret key di PWA publik. Publishable key disimpan hanya di browser ini. Pada Incognito, masukkan kembali bila perlu.</div><div class="modal-actions"><button type="button" class="secondary" id="clearBtn">Hapus konfigurasi</button><button type="submit" class="primary">Simpan &amp; hubungkan</button></div></form></div></div>
 <script>
@@ -61,7 +131,8 @@
   const svgNS='http://www.w3.org/2000/svg';
   const grams=[0.5,1,2,3,4,5,10,25,50,100,250,500,1000];
   const state={gram:1,days:30,rows:[],connected:false,lastFetch:null,config:null};
-  const palette=['#b88a37','#3c7bb2','#318b79','#8871b9','#d47c55','#5d778f','#a0a04f','#a46588','#758e3e'];
+  const BRANDS=['ANTAM','UBS','HARTADINATA','GALERI24'];
+  const brandColors={ANTAM:'#176847',UBS:'#183f79',HARTADINATA:'#a77d2b',GALERI24:'#25282d'};
   const money=v=>Number.isFinite(v)?'Rp'+Math.round(v).toLocaleString('id-ID'):'—';
   const compact=v=>{if(!Number.isFinite(v))return'—';const a=Math.abs(v);if(a>=1e9)return 'Rp'+(v/1e9).toLocaleString('id-ID',{maximumFractionDigits:2})+' M';if(a>=1e6)return 'Rp'+(v/1e6).toLocaleString('id-ID',{maximumFractionDigits:2})+' jt';if(a>=1e3)return 'Rp'+(v/1e3).toLocaleString('id-ID',{maximumFractionDigits:0})+' rb';return money(v)};
   const shortDay=s=>s?new Date(s+'T12:00:00Z').toLocaleDateString('id-ID',{day:'numeric',month:'short',timeZone:'UTC'}):'—';
@@ -89,23 +160,101 @@
   function pricePerItem(r){if(r.sell_price===null)return null;return r.sell_price_basis==='per_gram'?r.sell_price*r.weight_gram:r.sell_price}
   function sellFinalPerItem(r){if(r.sell_price_idr===null)return null;return r.sell_price_basis==='per_gram'?r.sell_price_idr*r.weight_gram:r.sell_price_idr}
   function buybackPerItem(r){if(r.buyback_price_idr===null)return null;return r.buyback_price_basis==='per_gram'?r.buyback_price_idr*r.weight_gram:r.buyback_price_idr}
-  function spreadRow(r){if(!['ANTAM','UBS'].includes(r.store_name))return null;const sell=sellFinalPerItem(r),buy=buybackPerItem(r);if(sell===null||buy===null)return null;return {...r,sell,buy,spread:sell-buy,pct:sell===0?null:(sell-buy)/sell*100}}
+  function spreadRow(r){
+    if(!BRANDS.includes(r.store_name))return null;
+    // Prioritaskan harga akhir. Harga dasar menjadi fallback terlabel jika harga akhir tidak tersedia.
+    const sell=pricePerItem(r),buy=buybackPerItem(r);
+    if(sell===null||buy===null||sell<=0)return null;
+    return {...r,sell,buy,spread:sell-buy,pct:(sell-buy)/sell*100,isBase:r.sell_price_idr===null};
+  }
+  const millis=s=>Date.parse(s+'T00:00:00Z');
+  const gapDays=(a,b)=>Math.round((millis(b)-millis(a))/86400000);
+  const pctFormat=n=>Number.isFinite(n)?n.toLocaleString('id-ID',{minimumFractionDigits:2,maximumFractionDigits:2})+'%':'—';
+  function timeX(s,b){return b.left+(millis(s)-b.t0)/Math.max(1,b.t1-b.t0)*(b.width-b.left-b.right)}
+  function timeline(svg,b){for(let i=0;i<5;i++){const ts=b.t0+(b.t1-b.t0)*i/4;const d=dateStr(new Date(ts));const x=b.left+(b.width-b.left-b.right)*i/4;const label=xsvg('text',{x,y:b.top+b.height+22,'text-anchor':i===0?'start':i===4?'end':'middle','font-size':10,fill:'#8997a6'},svg);label.textContent=shortDay(d)}}
   function renderGramFilters(){const g=$('gramList');g.replaceChildren();grams.filter(v=>state.rows.some(r=>r.weight_gram===v)||(state.rows.length===0&&v===state.gram)).forEach(v=>{const btn=document.createElement('button');btn.type='button';btn.className='chip';btn.textContent=(v===.5?'0.5':v)+'g';btn.setAttribute('aria-pressed',String(state.gram===v));btn.onclick=()=>{state.gram=v;render()};g.append(btn)})}
   function legend(el,entries){el.replaceChildren();for(const {name,color} of entries){const item=document.createElement('span');item.className='legend-entry';const dot=document.createElement('span');dot.className='swatch';dot.style.background=color;const label=document.createElement('span');label.textContent=name;item.append(dot,label);el.append(item)}}
-  function makeSVG(root,w=960,h=300){root.querySelectorAll('svg,.empty').forEach(e=>e.remove());const svg=xsvg('svg',{viewBox:`0 0 ${w} ${h}`,role:'img','aria-label':root.id==='linePlot'?'Grafik garis harga jual per toko':'Grafik batang spread harga Antam dan UBS'},root);return svg}
+  function makeSVG(root,w=960,h=300){root.querySelectorAll('svg,.empty').forEach(e=>e.remove());const svg=xsvg('svg',{viewBox:`0 0 ${w} ${h}`,role:'img','aria-label':root.id==='linePlot'?'Grafik garis harga jual per brand':'Grafik garis persentase spread '+root.id.replace('spreadPlot-','')},root);return svg}
   function noData(root,txt){root.querySelectorAll('svg,.empty').forEach(e=>e.remove());const box=document.createElement('div');box.className='empty';box.textContent=txt;root.append(box)}
   function yGrid(svg,values,bounds){const {left,top,height,right,width,min,max}=bounds;for(let i=0;i<5;i++){const val=min+(max-min)*i/4;const y=top+height-height*i/4;xsvg('line',{x1:left,y1:y,x2:width-right,y2:y,stroke:'#edf0f3','stroke-width':1},svg);const t=xsvg('text',{x:left-11,y:y+4,'text-anchor':'end','font-size':11,fill:'#95a0ae'},svg);t.textContent=compact(val).replace(/^Rp/,'')}}
   function addXTicks(svg,dates,bounds){const {left,width,right,top,height}=bounds;const count=Math.min(5,dates.length);let positions=[];for(let i=0;i<count;i++)positions.push(Math.round(i*(dates.length-1)/(Math.max(1,count-1))));const unique=[...new Set(positions)];for(const idx of unique){const x=left+idx/(Math.max(dates.length-1,1))*(width-right-left);const t=xsvg('text',{x,y:top+height+25,'text-anchor':'middle','font-size':11,fill:'#9ba5b1'},svg);t.textContent=shortDay(dates[idx])}}
   function locateTip(root,el,evt,htmlDate,rows){el.replaceChildren();const hdr=document.createElement('div');hdr.className='tt-date';hdr.textContent=htmlDate;el.append(hdr);for(const row of rows){const line=document.createElement('div');line.className='tip-row';const l=document.createElement('span');l.textContent=row[0];const r=document.createElement('b');r.textContent=row[1];line.append(l,r);el.append(line)}const rct=root.getBoundingClientRect();const x=evt.clientX-rct.left,y=evt.clientY-rct.top;el.classList.add('show');const tw=el.offsetWidth,th=el.offsetHeight;el.style.left=Math.min(Math.max(x+12,4),Math.max(4,rct.width-tw-4))+'px';el.style.top=(y-th>10?y-th-9:Math.min(rct.height-th-4,y+15))+'px'}
-  function lineChart(rows){const root=$('linePlot'),tip=$('lineTip');tip.classList.remove('show');const entries=rows.filter(r=>r.sell_price!==null).sort((a,b)=>a.price_date.localeCompare(b.price_date));const labels=[...new Set(entries.map(r=>r.store_name_y))].sort((a,b)=>a.localeCompare(b));const dates=[...new Set(entries.map(r=>r.price_date))].sort();setTxt('lineCount',labels.length+' series');setTxt('lineBadge',state.gram+' gram');legend($('lineLegend'),labels.map((name,i)=>({name,color:palette[i%palette.length]})));if(!dates.length){noData(root,'Harga jual tidak tersedia untuk gramase dan periode ini.');return}const w=Math.max(320,Math.round(root.clientWidth||960)),h=300,bs={left:77,right:15,top:17,height:230,width:w};const values=entries.map(pricePerItem).filter(Number.isFinite);let min=Math.min(...values),max=Math.max(...values);let step=Math.max((max-min)*.15,Math.abs(max)*.014,1000);min=Math.max(0,min-step);max+=step;bs.min=min;bs.max=max;const svg=makeSVG(root,w,h);yGrid(svg,values,bs);addXTicks(svg,dates,bs);
-  const rowsByDate=new Map(dates.map(d=>[d,entries.filter(r=>r.price_date===d)]));const pXY=(r)=>({x:bs.left+dates.indexOf(r.price_date)/Math.max(dates.length-1,1)*(w-bs.right-bs.left),y:bs.top+bs.height-(pricePerItem(r)-min)/(max-min)*bs.height});
-  labels.forEach((s,i)=>{const arr=entries.filter(r=>r.store_name_y===s).sort((a,b)=>a.price_date.localeCompare(b.price_date));if(!arr.length)return;const color=palette[i%palette.length];let segment=[];const flush=()=>{if(!segment.length)return;const d=segment.map((r,j)=>{const {x,y}=pXY(r);return (j?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)}).join(' ');xsvg('path',{d,stroke:color,'stroke-width':2.8,fill:'none','stroke-linecap':'round','stroke-linejoin':'round'},svg);segment=[]};for(let j=0;j<arr.length;j++){if(j>0&&dates.indexOf(arr[j].price_date)-dates.indexOf(arr[j-1].price_date)>1)flush();segment.push(arr[j])}flush();if(arr.length===1){const p=pXY(arr[0]);xsvg('circle',{cx:p.x,cy:p.y,r:4,fill:color},svg)}});
-  const guide=xsvg('line',{x1:0,y1:bs.top,x2:0,y2:bs.top+bs.height,stroke:'#97a5b4','stroke-dasharray':'3 4','stroke-width':1.3,visibility:'hidden'},svg);const group=xsvg('g',{},svg);const hit=xsvg('rect',{x:bs.left,y:bs.top,width:w-bs.right-bs.left,height:bs.height,fill:'transparent',style:'cursor:crosshair'},svg);hit.addEventListener('pointermove',e=>{const rect=svg.getBoundingClientRect(),px=(e.clientX-rect.left)/rect.width*w;const idx=Math.max(0,Math.min(dates.length-1,Math.round((px-bs.left)/(w-bs.right-bs.left)*(dates.length-1))));const x=bs.left+idx/Math.max(1,dates.length-1)*(w-bs.right-bs.left);guide.setAttribute('x1',x);guide.setAttribute('x2',x);guide.setAttribute('visibility','visible');group.replaceChildren();const date=dates[idx];const current=rowsByDate.get(date)||[];current.forEach(r=>{const p=pXY(r);xsvg('circle',{cx:p.x,cy:p.y,r:4.1,fill:'#fff',stroke:palette[labels.indexOf(r.store_name_y)%palette.length],'stroke-width':2.5},group)});locateTip(root,tip,e,longDay(date),current.map(r=>[r.store_name_y+(r.sell_price_idr===null?' †':''),compact(pricePerItem(r))]));});hit.addEventListener('pointerleave',()=>{guide.setAttribute('visibility','hidden');group.replaceChildren();tip.classList.remove('show')});}
-  function barChart(rows){const root=$('spreadPlot'),tip=$('spreadTip');tip.classList.remove('show');const spread=rows.map(spreadRow).filter(Boolean).sort((a,b)=>a.price_date.localeCompare(b.price_date));const dates=[...new Set(spread.map(r=>r.price_date))].sort();setTxt('spreadBadge',state.gram+' gram');setTxt('spreadCount',spread.length+' nilai');legend($('spreadLegend'),[{name:'ANTAM',color:'#b88a37'},{name:'UBS',color:'#3c7bb2'}]);if(!dates.length){noData(root,'Belum ada harga jual akhir dan buyback yang sebanding.');return}const w=Math.max(320,Math.round(root.clientWidth||960)),h=300,bs={left:77,right:15,top:16,height:229,width:w};let min=Math.min(0,...spread.map(r=>r.spread)),max=Math.max(0,...spread.map(r=>r.spread));const delta=Math.max((max-min)*.12,5000);min=Math.min(0,min-delta);max+=delta;bs.min=min;bs.max=max;const svg=makeSVG(root,w,h);yGrid(svg,[],bs);addXTicks(svg,dates,bs);const mid0=bs.top+bs.height-(0-min)/(max-min)*bs.height;const area=w-bs.left-bs.right;const band=area/dates.length;const bw=Math.max(3,Math.min(18,band*.26));const offset=bw*.58;
-  spread.forEach(r=>{const idx=dates.indexOf(r.price_date);const center=bs.left+band*(idx+.5);const x=center+(r.store_name==='ANTAM'?-offset:offset)-bw/2;const yy=bs.top+bs.height-(r.spread-min)/(max-min)*bs.height;const rect=xsvg('rect',{x,y:Math.min(yy,mid0),width:bw,height:Math.max(1,Math.abs(yy-mid0)),rx:Math.min(bw/3,4),fill:r.store_name==='ANTAM'?'#b88a37':'#3c7bb2',style:'cursor:pointer'},svg);const title=xsvg('title',{},rect);title.textContent=`${longDay(r.price_date)} · ${r.store_name}\nHarga jual: ${money(r.sell)}\nBuyback: ${money(r.buy)}\nSpread: ${money(r.spread)} (${r.pct.toFixed(2)}%)`;rect.addEventListener('pointermove',e=>locateTip(root,tip,e,longDay(r.price_date)+' · '+r.store_name,[['Jual',money(r.sell)],['Buyback',money(r.buy)],['Spread',money(r.spread)],['Spread (%)',r.pct.toFixed(2)+'%']]));rect.addEventListener('pointerleave',()=>tip.classList.remove('show'))});
+  function lineChart(rows){
+    const root=$('linePlot'),tip=$('lineTip');tip.classList.remove('show');
+    const entries=rows.filter(r=>BRANDS.includes(r.store_name_y)&&r.sell_price!==null&&pricePerItem(r)!==null).sort((a,b)=>a.price_date.localeCompare(b.price_date));
+    const labels=BRANDS.filter(name=>entries.some(r=>r.store_name_y===name));
+    setTxt('lineCount',labels.length+' brand');setTxt('lineBadge',state.gram+' gram');
+    legend($('lineLegend'),labels.map(name=>({name,color:brandColors[name]})));
+    if(!entries.length){noData(root,'Belum ada harga jual untuk gramase dan periode ini.');return}
+    const width=Math.max(320,Math.round(root.clientWidth||960)),height=Math.round(root.clientHeight||340);
+    const b={left:76,right:18,top:18,height:height-61,width};
+    const values=entries.map(pricePerItem).filter(Number.isFinite),vmin=Math.min(...values),vmax=Math.max(...values);
+    const pad=Math.max((vmax-vmin)*.16,Math.abs(vmax)*.012,1000);
+    b.min=Math.max(0,vmin-pad);b.max=vmax+pad;
+    b.t0=millis(dayBefore(state.days-1));b.t1=millis(dayBefore(0));
+    const svg=makeSVG(root,width,height);yGrid(svg,values,b);timeline(svg,b);
+    const xy=r=>({x:timeX(r.price_date,b),y:b.top+b.height-(pricePerItem(r)-b.min)/(b.max-b.min)*b.height});
+    labels.forEach(brand=>{
+      const arr=entries.filter(r=>r.store_name_y===brand),color=brandColors[brand];
+      for(let i=1;i<arr.length;i++){
+        const prev=arr[i-1],cur=arr[i],p=xy(prev),q=xy(cur),isGap=gapDays(prev.price_date,cur.price_date)>1;
+        xsvg('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,stroke:color,'stroke-width':isGap?2:2.8,'stroke-dasharray':isGap?'6 5':'none','stroke-linecap':'round',opacity:isGap?.72:1},svg);
+      }
+      arr.forEach(r=>{
+        const p=xy(r),isBase=r.sell_price_idr===null;
+        const dot=xsvg('circle',{cx:p.x,cy:p.y,r:4.1,fill:isBase?'#fff':color,stroke:color,'stroke-width':2,style:'cursor:pointer'},svg);
+        const pointTitle=xsvg('title',{},dot);pointTitle.textContent=`${brand} · ${longDay(r.price_date)} · ${money(pricePerItem(r))}${isBase?' (harga dasar sebelum pajak)':''}`;
+        const items=[['Harga jual',money(pricePerItem(r))],['Status',isBase?'Harga dasar sebelum pajak':'Harga jual akhir']];
+        dot.addEventListener('pointerenter',e=>locateTip(root,tip,e,brand+' · '+longDay(r.price_date),items));
+        dot.addEventListener('pointermove',e=>locateTip(root,tip,e,brand+' · '+longDay(r.price_date),items));
+        dot.addEventListener('pointerleave',()=>tip.classList.remove('show'));
+      });
+    });
   }
-  function renderStats(rows){const latest=s=>rows.filter(r=>r.store_name===s&&r.sell_price!==null).sort((a,b)=>b.price_date.localeCompare(a.price_date))[0];const a=latest('ANTAM'),u=latest('UBS');setTxt('statAntam',a?compact(pricePerItem(a)):'—');setTxt('subAntam',a?longDay(a.price_date)+(a.sell_price_idr===null?' · harga dasar':' · harga akhir'):'Tidak tersedia');setTxt('statUbs',u?compact(pricePerItem(u)):'—');setTxt('subUbs',u?longDay(u.price_date)+(u.sell_price_idr===null?' · harga dasar':' · harga akhir'):'Tidak tersedia');const good=rows.map(spreadRow).filter(Boolean);const latestByBrand=['ANTAM','UBS'].map(s=>good.filter(r=>r.store_name===s).sort((a,b)=>b.price_date.localeCompare(a.price_date))[0]).filter(Boolean);const low=latestByBrand.sort((a,b)=>a.pct-b.pct)[0];setTxt('statSpread',low?low.pct.toLocaleString('id-ID',{maximumFractionDigits:2})+'%':'—');setTxt('subSpread',low?`${low.store_name} · ${longDay(low.price_date)}`:'Perlu harga jual akhir & buyback');let date=rows.map(r=>r.price_date).sort().at(-1);setTxt('statDate',date?shortDay(date):'—');setTxt('subDate',date?'Data masuk pada '+longDay(date):'Belum ada harga')}
-  function render(){renderGramFilters();document.querySelectorAll('#rangeList button').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.days)===state.days)));const rows=state.rows.filter(r=>Math.abs(r.weight_gram-state.gram)<.0001 && r.price_date>=dayBefore(state.days-1));renderStats(rows);lineChart(rows);barChart(rows)}
+  function spreadBrandChart(brand,rows){
+    const root=$('spreadPlot-'+brand),tip=$('spreadTip-'+brand);
+    tip.classList.remove('show');
+    const all=rows.filter(r=>r.store_name===brand),arr=all.map(spreadRow).filter(Boolean).sort((a,b)=>a.price_date.localeCompare(b.price_date));
+    const latest=arr.at(-1),baseCount=arr.filter(r=>r.isBase).length;
+    setTxt('spreadCount-'+brand,`${arr.length} titik · ${baseCount} harga dasar`);
+    setTxt('spreadValue-'+brand,latest?pctFormat(latest.pct):'—');
+    setTxt('spreadDate-'+brand,latest?longDay(latest.price_date):'Belum ada data');
+    setTxt('spreadDetail-'+brand,latest?`Jual ${compact(latest.sell)} · Buyback ${compact(latest.buy)}`:'Belum tersedia harga jual dan buyback');
+    const basis=$('spreadBasis-'+brand);
+    basis.textContent=latest?(latest.isBase?'† Harga dasar':'Harga jual akhir'):'—';
+    basis.classList.toggle('base-flag',Boolean(latest?.isBase));
+    if(!arr.length){noData(root,'Belum ada pasangan harga jual dan buyback untuk gramase ini.');return}
+    const width=Math.max(320,Math.round(root.clientWidth||500)),height=Math.round(root.clientHeight||183);
+    const b={left:49,right:12,top:10,height:height-46,width};
+    const points=arr.map(r=>r.pct),pmin=Math.min(...points),pmax=Math.max(...points);
+    const pad=Math.max((pmax-pmin)*.25,0.45);
+    b.min=pmin>0?Math.max(0,pmin-pad):pmin-pad;b.max=pmax+pad;
+    if(b.max-b.min<1){b.max=b.min+1}
+    b.t0=millis(dayBefore(state.days-1));b.t1=millis(dayBefore(0));
+    const svg=makeSVG(root,width,height),color=brandColors[brand];
+    for(let i=0;i<4;i++){
+      const value=b.min+(b.max-b.min)*i/3,y=b.top+b.height-b.height*i/3;
+      xsvg('line',{x1:b.left,y1:y,x2:width-b.right,y2:y,stroke:'#eef1f3'},svg);
+      const t=xsvg('text',{x:b.left-8,y:y+4,'text-anchor':'end','font-size':10,fill:'#98a4b0'},svg);t.textContent=value.toLocaleString('id-ID',{maximumFractionDigits:1})+'%';
+    }
+    timeline(svg,b);
+    const xy=r=>({x:timeX(r.price_date,b),y:b.top+b.height-(r.pct-b.min)/(b.max-b.min)*b.height});
+    for(let i=1;i<arr.length;i++){
+      const prev=arr[i-1],cur=arr[i],p=xy(prev),q=xy(cur),missing=gapDays(prev.price_date,cur.price_date)>1;
+      xsvg('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,stroke:color,'stroke-width':missing?1.8:2.2,'stroke-dasharray':missing?'5 4':'none',opacity:missing?.65:1,'stroke-linecap':'round'},svg);
+    }
+    arr.forEach(r=>{
+      const p=xy(r),dot=xsvg('circle',{cx:p.x,cy:p.y,r:3.6,fill:r.isBase?'#fff':color,stroke:color,'stroke-width':1.7,style:'cursor:pointer'},svg);
+      const title=xsvg('title',{},dot);title.textContent=`${brand} · ${longDay(r.price_date)} · Spread ${pctFormat(r.pct)}${r.isBase?' · harga dasar sebelum pajak':''}`;
+      const info=[['Spread',pctFormat(r.pct)],['Jual',money(r.sell)],['Buyback',money(r.buy)],['Selisih',money(r.spread)],['Basis jual',r.isBase?'Dasar sebelum pajak':'Harga akhir']];
+      dot.addEventListener('pointermove',e=>locateTip(root,tip,e,brand+' · '+longDay(r.price_date),info));
+      dot.addEventListener('pointerenter',e=>locateTip(root,tip,e,brand+' · '+longDay(r.price_date),info));
+      dot.addEventListener('pointerleave',()=>tip.classList.remove('show'));
+    });
+  }
+  function spreadCharts(rows){setTxt('spreadBadge',state.gram+' gram');BRANDS.forEach(brand=>spreadBrandChart(brand,rows))}
+  function renderStats(rows){const latest=s=>rows.filter(r=>r.store_name===s&&r.sell_price!==null).sort((a,b)=>b.price_date.localeCompare(a.price_date))[0];const a=latest('ANTAM'),u=latest('UBS');setTxt('statAntam',a?compact(pricePerItem(a)):'—');setTxt('subAntam',a?longDay(a.price_date)+(a.sell_price_idr===null?' · harga dasar':' · harga akhir'):'Tidak tersedia');setTxt('statUbs',u?compact(pricePerItem(u)):'—');setTxt('subUbs',u?longDay(u.price_date)+(u.sell_price_idr===null?' · harga dasar':' · harga akhir'):'Tidak tersedia');const good=rows.map(spreadRow).filter(Boolean);const latestByBrand=BRANDS.map(s=>good.filter(r=>r.store_name===s).sort((a,b)=>b.price_date.localeCompare(a.price_date))[0]).filter(Boolean);const low=latestByBrand.sort((a,b)=>a.pct-b.pct)[0];setTxt('statSpread',low?low.pct.toLocaleString('id-ID',{maximumFractionDigits:2})+'%':'—');setTxt('subSpread',low?`${low.store_name} · ${longDay(low.price_date)}`:'Perlu harga jual akhir & buyback');let date=rows.map(r=>r.price_date).sort().at(-1);setTxt('statDate',date?shortDay(date):'—');setTxt('subDate',date?'Data masuk pada '+longDay(date):'Belum ada harga')}
+  function render(){renderGramFilters();document.querySelectorAll('#rangeList button').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.days)===state.days)));const rows=state.rows.filter(r=>Math.abs(r.weight_gram-state.gram)<.0001 && r.price_date>=dayBefore(state.days-1));renderStats(rows);lineChart(rows);spreadCharts(rows)}
   function configRead(){try{return JSON.parse(localStorage.getItem('emas_monitor_config_v1')||'null')}catch{return null}}
   function openSettings(){const c=state.config||configRead()||{};$('urlInput').value=c.url||'https://isoazrlrvegmofscpiwk.supabase.co';$('keyInput').value=c.key||'';$('settingsOverlay').classList.add('open');$('keyInput').focus()}
   function closeSettings(){$('settingsOverlay').classList.remove('open')}
@@ -169,7 +318,7 @@
   localStorage.removeItem('emas_monitor_cache_v1');
   state.config=configRead();render();fetchLive();
   if(!state.config){setTimeout(openSettings,350);}
-  if('serviceWorker' in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=3-20261029').catch(()=>{}));
+  if('serviceWorker' in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=4-20261030').catch(()=>{}));
 })();
 </script>
 </body>
